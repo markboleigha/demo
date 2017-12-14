@@ -61,9 +61,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-md-12">
                           <!-- progressbar -->
                           <ul id="progressbar">
-                            <li class="active">Personal Details</li>
+                            <li class="active">Personal & Family Details</li>
                             <li>Appointments</li>
                             <li>Courses Attended</li>
+                            <li>Awards & Decorations</li>
                           </ul>
                           <!-- fieldsets -->
                         </div>
@@ -75,7 +76,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       echo form_open('', $attributes); ?>
 
                       <!-- fieldsets -->
-                      <fieldset>
+                      <fieldset id="step-0">
 
                         <div class="form-group">
                           <div class="col-md-6">
@@ -92,28 +93,87 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </select>
                           </div>
 
+                          <div class="clearfix"></div>
+                        </div>
+
+                        <div class="form-group">
+
+                          <div class="col-md-6">
+                            <label for="state_of_origin">Marital Status:</label>
+                            <select class="form-control" id="marital_status" name="marital_status">
+                              <option value="single">Single</option>
+                              <option value="married">Married</option>
+                              <option value="divorced">Divorced</option>
+                              <option value="widowed">Widow(er)</option>
+                            </select>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="religion" >Religion:</label>
+      											<input type="text" class="form-control" name="religion" id="religion">
+                          </div>
+
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-md-6">
+                            <label for="no_of_children">Number of Children</label>
+                            <input type="text" class="form-control" name="no_of_children" id="no_of_children">
+
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                          <div class="col-md-12">
+                            <h4>Next of Kin Details</h4>
+                          </div>
+
+                          <div class="col-md-6">
+        											<label for="nok_name">Name of Next of kin:</label>
+        											<input type="text" class="form-control" name="nok_name" id="nok_name">
+                          </div>
+
+                          <div class="col-md-6">
+                            <label for="nok_relationship">Relationship:</label>
+                            <input type="text" class="form-control" name="nok_relationship" id="nok_relationship">
+                          </div>
+                          <div class="clearfix"></div>
                         </div>
 
                         <div class="form-group">
                           <div class="col-md-6">
-
-
-                              <label for="state_of_origin">Marital Status:</label>
-                              <select class="form-control" id="marital_status" name="marital_status">
-                                <option value="single">Single</option>
-                                <option value="married">Married</option>
-                                <option value="divorced">Divorced</option>
-                                <option value="widowed">Widow(er)</option>
-                              </select>
+                            <label for="nok_phone">Next of Kin Phone</label>
+                            <input type="text" class="form-control" name="nok_phone" id="nok_phone">
                           </div>
+
                           <div class="col-md-6">
-
-
+                            <label for="nok_email">Next of Kin Email</label>
+                            <input type="text" class="form-control" name="nok_email" id="nok_email">
                           </div>
-
+                          <div class="clearfix"></div>
                         </div>
 
-                          <!-- <input type="button" name="next" class="next action-button" value="Next"/> -->
+                        <div class="form-group">
+                          <div class="col-md-6">
+                            <label for="nok_address">Next of Kin Address</label>
+                            <input type="text" class="form-control" name="nok_address" id="nok_address">
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+
+                        <div class="col-md-12">
+                          <button type="button" class="next but opc-3 pull-right" data-step="1">Next <i class="fa icon-right-circled"></i></button>
+                        </div>
+                        <div class="clearfix"></div>
+
+                      </fieldset>
+
+
+                      <fieldset id="step-2">
+
+                        hahahahahah
                       </fieldset>
 
 
@@ -235,7 +295,8 @@ $(function(){
 
 
   //jQuery time
-  var current_fs, next_fs, previous_fs; //fieldsets
+  var current_fs, next_fs, previous_fs, next_view; //fieldsets
+  var cur_step, next_step, prev_step;
   var left, opacity, scale; //fieldset properties which we will animate
   var animating; //flag to prevent quick multi-click glitches
 
@@ -243,16 +304,73 @@ $(function(){
   	if(animating) return false;
   	animating = true;
 
-  	current_fs = $(this).parent();
-  	next_fs = $(this).parent().next();
+     current_fs = $(this).data('step');
+  	 next_fs = Math.floor(current_fs += 1);
+     prev_fs = Math.floor(current_fs -= 1);
+
+     cur_step = $("#step-"+current_fs);
+     next_step = $("#step-"+next_fs);
+    // current_fs = $(this).closest("fieldset");
+  	next_view = $(this).closest("fieldset").next();
+
+    if($("form").valid()){
+      //activate next step on progressbar using the index of next_fs
+    	$("#progressbar li").eq($("fieldset").index(next_view)).addClass("active");
+
+    	//show the next fieldset
+    	next_step.show();
+    	//hide the current fieldset with style
+    	cur_step.animate({opacity: 0}, {
+    		step: function(now, mx) {
+    			//as the opacity of current_fs reduces to 0 - stored in "now"
+    			//1. scale current_fs down to 80%
+    			scale = 1 - (1 - now) * 0.2;
+    			//2. bring next_fs from the right(50%)
+    			left = (now * 50)+"%";
+    			//3. increase opacity of next_fs to 1 as it moves in
+    			opacity = 1 - now;
+    			cur_step.css({
+            'transform': 'scale('+scale+')',
+            'position': 'absolute'
+          });
+    			next_step.css({'left': left, 'opacity': opacity});
+    		},
+    		duration: 800,
+    		complete: function(){
+    			cur_step.hide();
+    			animating = false;
+    		},
+    		//this comes from the custom easing plugin
+    		easing: 'easeInOutBack'
+    	});
+
+    }
+
+  });
+
+  $(".previous").click(function(){
+    if(animating) return false;
+  	animating = true;
+
+     current_fs = $(this).data('step');
+
+  	 next_fs = Math.floor(current_fs =+ 1);
+     prev_fs = Math.floor(current_fs -= 1);
+
+     cur_step = $("#step-"+current_fs);
+     next_step = $("#step-"+next_fs);
+    // current_fs = $(this).closest("fieldset");
+  	prev_view = $(this).closest("fieldset").prev();
+
+
 
   	//activate next step on progressbar using the index of next_fs
-  	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+  	$("#progressbar li").eq($("fieldset").index(prev_view)).addClass("active");
 
   	//show the next fieldset
-  	next_fs.show();
+  	prev_step.show();
   	//hide the current fieldset with style
-  	current_fs.animate({opacity: 0}, {
+  	cur_step.animate({opacity: 0}, {
   		step: function(now, mx) {
   			//as the opacity of current_fs reduces to 0 - stored in "now"
   			//1. scale current_fs down to 80%
@@ -261,55 +379,31 @@ $(function(){
   			left = (now * 50)+"%";
   			//3. increase opacity of next_fs to 1 as it moves in
   			opacity = 1 - now;
-  			current_fs.css({
+  			cur_step.css({
           'transform': 'scale('+scale+')',
           'position': 'absolute'
         });
-  			next_fs.css({'left': left, 'opacity': opacity});
+  			prev_step.css({'left': left, 'opacity': opacity});
   		},
   		duration: 800,
   		complete: function(){
-  			current_fs.hide();
+  			cur_step.hide();
   			animating = false;
   		},
   		//this comes from the custom easing plugin
   		easing: 'easeInOutBack'
   	});
   });
+  $("form").validate({
+    rules: {
 
-  $(".previous").click(function(){
-  	if(animating) return false;
-  	animating = true;
+    },
+    messages: {
 
-  	current_fs = $(this).parent();
-  	previous_fs = $(this).parent().prev();
-
-  	//de-activate current step on progressbar
-  	$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-
-  	//show the previous fieldset
-  	previous_fs.show();
-  	//hide the current fieldset with style
-  	current_fs.animate({opacity: 0}, {
-  		step: function(now, mx) {
-  			//as the opacity of current_fs reduces to 0 - stored in "now"
-  			//1. scale previous_fs from 80% to 100%
-  			scale = 0.8 + (1 - now) * 0.2;
-  			//2. take current_fs to the right(50%) - from 0%
-  			left = ((1-now) * 50)+"%";
-  			//3. increase opacity of previous_fs to 1 as it moves in
-  			opacity = 1 - now;
-  			current_fs.css({'left': left});
-  			previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
-  		},
-  		duration: 800,
-  		complete: function(){
-  			current_fs.hide();
-  			animating = false;
-  		},
-  		//this comes from the custom easing plugin
-  		easing: 'easeInOutBack'
-  	});
+    },
+    submitHandler: function(form){
+      return false;
+    }
   });
 
   $(".submit").click(function(){
@@ -381,6 +475,7 @@ for (var i = 0; i < state_list.states.length; i++) {
   });
 
   $("#state_of_origin").trigger('change');
+
 
 });
 
