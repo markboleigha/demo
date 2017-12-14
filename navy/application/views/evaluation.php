@@ -84,13 +84,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                             </select>
                           </div>
+
                           <div class="col-md-6">
-                            <label for="state_of_origin">Marital Status:</label>
-                            <select class="form-control" id="marital_status" name="marital_status">
-                              <option value="single">Single</option>
-                              <option value="married">Married</option>
-                              <option value="divorced">Divorced</option>
-                              <option value="widowed">Widow(er)</option>
+                            <label for="lga">Local Govt:</label>
+                            <select class="form-control" data-live-search="true" id="lga" name="lga">
+
                             </select>
                           </div>
 
@@ -98,10 +96,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                         <div class="form-group">
                           <div class="col-md-6">
-        											<label class="control-label col-md-2">Local Govt:</label>
-        											<div class="col-md-8">
-        												<input type="text" class="form-control" name="lga" id="lga">
-        											</div>
+
+
+                              <label for="state_of_origin">Marital Status:</label>
+                              <select class="form-control" id="marital_status" name="marital_status">
+                                <option value="single">Single</option>
+                                <option value="married">Married</option>
+                                <option value="divorced">Divorced</option>
+                                <option value="widowed">Widow(er)</option>
+                              </select>
                           </div>
                           <div class="col-md-6">
 
@@ -356,6 +359,29 @@ $(function(){
 for (var i = 0; i < state_list.states.length; i++) {
   $("#state_of_origin").append($('<option></option>').attr('value', state_list.states[i]).text(state_list.states[i]));
 }
+  $("#state_of_origin").change(function(e){
+    var state_name = $(this).val();
+    $("#lga").empty().selectpicker('refresh');
+    $.getJSON("<?php echo base_url('assets/lga.json');?>", function(data){
+
+      for (var i = 0; i < data.length; i++) {
+        if(data[i].state.name === state_name){
+          //console.log(data[i].state);
+          lgas = data[i].state.locals
+          for (var i = 0; i < lgas.length; i++) {
+            $("#lga").append($('<option></option>').attr('value', lgas[i].name).text(lgas[i].name));
+          }
+
+        }
+      }
+
+      $("#lga").selectpicker('refresh');
+
+    });
+  });
+
+  $("#state_of_origin").trigger('change');
+
 });
 
 

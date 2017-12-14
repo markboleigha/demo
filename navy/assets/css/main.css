@@ -1641,3 +1641,7 @@ font-family:"open_sansregular",Arial,sans-serif;
     background: #ee0979;
     color: white;
 }
+
+input, select{
+  border-radius: 0px !important;
+}
