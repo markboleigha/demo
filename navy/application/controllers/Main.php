@@ -99,7 +99,7 @@ class Main extends CI_Controller{
           $this->session->keep_flashdata('msg');
         }
       }else{
-        $this->session->set_flashdata('reg_err', 'Please correct errors below');
+        $this->session->set_flashdata('reg_err', '<div class="errorMsg">Please correct errors below</div>');
 
       }
 
@@ -118,6 +118,7 @@ class Main extends CI_Controller{
   */
   public function evaluation(){
     if($this->auth->is_logged_in($this->user)){
+
       $data = array(
         'title' => 'Personnel Evaluation',
         'page' => 'evaluation',

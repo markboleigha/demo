@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
       <!--Profile image-->
       <figure class="img-profile">
-        <img src="<?php echo base_url(). 'assets/img/profile.jpg' ?>" alt=""/>
+        <img src="<?php echo base_url(). 'assets/uploads/avatars/'.$user->service_no.'.png' ?>" alt=""/>
 
         <figcaption class="name-profile">
           <span><?php echo $user->last_name ." ".$user->first_name;?></span>

@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="content">
 
           <!--Block content-->
-          <div class="block-content ">
+          <div class="block-content">
 
             <!--Works-->
             <div class="works">
@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <!--TAB 1-->
                   <div class="tab-pane fade in active" id="tab-1">
                     <div class="row">
-                      <div class="divider-m tCenter margTSSmall margBSmall clearfix">
+                      <div class="divider-m tCenter margTSSmall clearfix">
                         <div class="col-md-12">
                           <!-- progressbar -->
                           <ul id="progressbar">
@@ -71,19 +71,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                       </div>
                     </div>
-                    <?php
-                    $attributes = array('id'=> 'msform');
-                    echo form_open('', $attributes) ?>
+                    <div class="col-lg-12">
+                      <?php
+                      $attributes = array('id'=> 'msform', 'role' => 'form');
+                      echo form_open('', $attributes); ?>
 
-                    <!-- fieldsets -->
-                    <fieldset>
-                        <h2 class="fs-title">Personal Details</h2>
-                        <h3 class="fs-subtitle">Tell us something more about you</h3>
-                        <input type="text" name="fname" placeholder="First Name"/>
-                        <input type="text" name="lname" placeholder="Last Name"/>
-                        <input type="text" name="phone" placeholder="Phone"/>
-                        <input type="button" name="next" class="next action-button" value="Next"/>
-                    </fieldset>
+                      <!-- fieldsets -->
+                      <fieldset>
+                        <div class="form-group">
+                          <div class="col-md-3">
+                            <label for="state_of_origin">State of Orgin:</label>
+                          </div>
+                          <div class="col-md-6">
+                            <input type="text" class="form-control" name="state_of_origin" id="state_of_orign">
+                          </div>
+
+                        </div>
+
+                          <input type="button" name="next" class="next action-button" value="Next"/>
+                      </fieldset>
+
+
+                    </div>
+
+
+
                     <div class="form-group">
                       <label for="current_appointment">Current Appointment:</label>
                       <div class="col-md-8">
@@ -144,47 +156,47 @@ $(function(){
 
 
   //jQuery time
-var current_fs, next_fs, previous_fs; //fieldsets
-var left, opacity, scale; //fieldset properties which we will animate
-var animating; //flag to prevent quick multi-click glitches
+  var current_fs, next_fs, previous_fs; //fieldsets
+  var left, opacity, scale; //fieldset properties which we will animate
+  var animating; //flag to prevent quick multi-click glitches
 
-$(".next").click(function(){
-	if(animating) return false;
-	animating = true;
+  $(".next").click(function(){
+  	if(animating) return false;
+  	animating = true;
 
-	current_fs = $(this).parent();
-	next_fs = $(this).parent().next();
+  	current_fs = $(this).parent();
+  	next_fs = $(this).parent().next();
 
-	//activate next step on progressbar using the index of next_fs
-	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+  	//activate next step on progressbar using the index of next_fs
+  	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
-	//show the next fieldset
-	next_fs.show();
-	//hide the current fieldset with style
-	current_fs.animate({opacity: 0}, {
-		step: function(now, mx) {
-			//as the opacity of current_fs reduces to 0 - stored in "now"
-			//1. scale current_fs down to 80%
-			scale = 1 - (1 - now) * 0.2;
-			//2. bring next_fs from the right(50%)
-			left = (now * 50)+"%";
-			//3. increase opacity of next_fs to 1 as it moves in
-			opacity = 1 - now;
-			current_fs.css({
-        'transform': 'scale('+scale+')',
-        'position': 'absolute'
-      });
-			next_fs.css({'left': left, 'opacity': opacity});
-		},
-		duration: 800,
-		complete: function(){
-			current_fs.hide();
-			animating = false;
-		},
-		//this comes from the custom easing plugin
-		easing: 'easeInOutBack'
-	});
-});
+  	//show the next fieldset
+  	next_fs.show();
+  	//hide the current fieldset with style
+  	current_fs.animate({opacity: 0}, {
+  		step: function(now, mx) {
+  			//as the opacity of current_fs reduces to 0 - stored in "now"
+  			//1. scale current_fs down to 80%
+  			scale = 1 - (1 - now) * 0.2;
+  			//2. bring next_fs from the right(50%)
+  			left = (now * 50)+"%";
+  			//3. increase opacity of next_fs to 1 as it moves in
+  			opacity = 1 - now;
+  			current_fs.css({
+          'transform': 'scale('+scale+')',
+          'position': 'absolute'
+        });
+  			next_fs.css({'left': left, 'opacity': opacity});
+  		},
+  		duration: 800,
+  		complete: function(){
+  			current_fs.hide();
+  			animating = false;
+  		},
+  		//this comes from the custom easing plugin
+  		easing: 'easeInOutBack'
+  	});
+  });
 
   $(".previous").click(function(){
   	if(animating) return false;

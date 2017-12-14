@@ -36,6 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?php echo base_url().'assets/js/placeholders.min.js' ?>" type="text/javascript"></script>
     <script type="text/javascript" src="<?php echo base_url().'assets/js/Switcher/switcher.js' ?>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url().'assets/js/script.js' ?>" type="text/javascript"></script>
     <!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script> -->
   </body>

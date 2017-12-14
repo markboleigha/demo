@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <?php $attributes = array("class" => "contact-form", "id" => "regForm");
                   echo form_open('register', $attributes) ?>
 
-                  <div class="errorMsg"><?php echo $this->session->flashdata('reg_err');?></div>
+                  <?php echo $this->session->flashdata('reg_err');?>
                     <!--Input columns-->
                     <div class="input-columns clearfix">
 
