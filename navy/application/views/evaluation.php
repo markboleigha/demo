@@ -52,11 +52,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
               </div>
-              <!--End row-->
-
-<<<<<<< HEAD
                 <div class="row tab-content">
-
+                  <?php if(empty($particulars) || isset($_GET['edit'])) { ?>
                   <!--TAB 1-->
                   <div class="tab-pane fade in active" id="tab-1">
                     <div class="row">
@@ -72,24 +69,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-12">
+                    <div class="row col-lg-12">
                       <?php
                       $attributes = array('id'=> 'msform', 'role' => 'form');
                       echo form_open('', $attributes); ?>
 
                       <!-- fieldsets -->
                       <fieldset>
+
                         <div class="form-group">
-                          <div class="col-md-3">
+                          <div class="col-md-6">
                             <label for="state_of_origin">State of Orgin:</label>
+                            <select class="selectpicker form-control" data-live-search="true" name="state_of_origin" id="state_of_origin">
+
+                            </select>
                           </div>
                           <div class="col-md-6">
-                            <input type="text" class="form-control" name="state_of_origin" id="state_of_orign">
+                            <label for="state_of_origin">Marital Status:</label>
+                            <select class="form-control" id="marital_status" name="marital_status">
+                              <option value="single">Single</option>
+                              <option value="married">Married</option>
+                              <option value="divorced">Divorced</option>
+                              <option value="widowed">Widow(er)</option>
+                            </select>
                           </div>
 
                         </div>
 
-                          <input type="button" name="next" class="next action-button" value="Next"/>
+                        <div class="form-group">
+                          <div class="col-md-6">
+        											<label class="control-label col-md-2">Local Govt:</label>
+        											<div class="col-md-8">
+        												<input type="text" class="form-control" name="lga" id="lga">
+        											</div>
+                          </div>
+                          <div class="col-md-6">
+
+
+                          </div>
+
+                        </div>
+
+                          <!-- <input type="button" name="next" class="next action-button" value="Next"/> -->
                       </fieldset>
 
 
@@ -97,19 +118,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                       <label for="current_appointment">Current Appointment:</label>
                       <div class="col-md-8">
                         <input type="text" class="form-control" name="current_appointment" id="current_appointment">
                       </div>
-                    </div>
+                    </div> -->
 
                   </div>
+                <?php }else{ ?>
+
+
+
+
+              <?php  } ?>
 
                   <!--TAB 2-->
                   <div class="tab-pane fade" id="tab-2">
                       <h3><i class="fa hearseicon-"></i> Evaluation</h3>
-=======
+
               <div class="row">
                 <div class="divider-m tCenter margTSSmall margBSmall clearfix">
                   <div class="col-md-12">
@@ -181,6 +208,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <script type="text/javascript">
 $(function(){
+
+
+
+
+
   $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
       localStorage.setItem('activeTab', $(e.target).attr('href'));
   });
@@ -279,7 +311,51 @@ $(function(){
 
   $(".submit").click(function(){
   	return false;
-  })
+  });
+
+
+  var state_list = {"states": [
+  "Abia",
+  "Adamawa",
+  "Anambra",
+  "Akwa Ibom",
+  "Bauchi",
+  "Bayelsa",
+  "Benue",
+  "Borno",
+  "Cross River",
+  "Delta",
+  "Ebonyi",
+  "Enugu",
+  "Edo",
+  "Ekiti",
+  "FCT - Abuja",
+  "Gombe",
+  "Imo",
+  "Jigawa",
+  "Kaduna",
+  "Kano",
+  "Katsina",
+  "Kebbi",
+  "Kogi",
+  "Kwara",
+  "Lagos",
+  "Nasarawa",
+  "Niger",
+  "Ogun",
+  "Ondo",
+  "Osun",
+  "Oyo",
+  "Plateau",
+  "Rivers",
+  "Sokoto",
+  "Taraba",
+  "Yobe",
+  "Zamfara"
+]};
+for (var i = 0; i < state_list.states.length; i++) {
+  $("#state_of_origin").append($('<option></option>').attr('value', state_list.states[i]).text(state_list.states[i]));
+}
 });
 
 
