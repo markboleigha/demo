@@ -1567,7 +1567,9 @@ font-family:"open_sansregular",Arial,sans-serif;
   margin-bottom: 10px;
 
 }
-
+.error{
+  color: #d8080899;
+}
 #msform fieldset {
     /*stacking fieldsets above each other*/
     position: relative;

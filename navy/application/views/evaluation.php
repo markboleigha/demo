@@ -162,18 +162,77 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           </div>
                           <div class="clearfix"></div>
                         </div>
+                        <hr>
+                        <div class="form-group">
+                          <div class="col-md-12">
+                            <h4>Medical Information</h4>
+                          </div>
+                          <div class="col-md-6">
+                            <label for ="medical_state">Medical State</label>
+                            <input type="text" class="form-control" name="medical_state" id="medical_state">
+                          </div>
 
+                          <div class="col-md-6">
+                            <label for="last_medical">Last Medical Examination</label>
+                            <input type="text" class="form-control datepicker" name="medical_date" id="medical_date">
+
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+
+                        <div class="form-group">
+
+                          <div class="col-md-6">
+                            <label for="doctor_name">Rank & Name of Doctor</label>
+                            <input type="text" class="form-control" name="doctor_name" id="doctor_name">
+                          </div>
+
+                          <div class="col-md-6">
+                            <label for="doctor_unit">Unit (of Doctor)</label>
+                            <input type="text" class="form-control" name="doctor_unit" id="doctor_unit">
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-md-6">
+                            <label for="fitness_state">Fitness State</label>
+                            <input type="text" class="form-control" name="fitness_state" id="fitness_state">
+                          </div>
+                          <div class="col-md-6">
+                            <label for="fitness_date">Date</label>
+                            <input type="text" class="form-control datepicker" name="fitness_date" id="fitness_date">
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-md-6">
+                            <label for="fitness_officer">Rank & Name of PT Officer</label>
+                            <input type="text" class="form-control" name="fitness_officer" id="fitness_officer">
+                          </div>
+
+                          <div class="col-md-6">
+                            <label for="fitness_unit">PT Officer Unit</label>
+                            <input type="text" class="form-control" name="fitness_unit" id="fitness_unit">
+                          </div>
+                          <div class="clearfix"></div>
+
+                        </div>
+                        <hr>
                         <div class="col-md-12">
-                          <button type="button" class="next but opc-3 pull-right" data-step="1">Next <i class="fa icon-right-circled"></i></button>
+                          <button type="button" class="next but opc-3 pull-right" data-step="0">Next <i class="fa icon-right-circled"></i></button>
                         </div>
                         <div class="clearfix"></div>
 
                       </fieldset>
 
 
-                      <fieldset id="step-2">
+                      <fieldset id="step-1">
 
-                        hahahahahah
+
+
+
                       </fieldset>
 
 
@@ -269,215 +328,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 </div>
 
-<script type="text/javascript">
-$(function(){
-
-
-
-
-
-  $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-      localStorage.setItem('activeTab', $(e.target).attr('href'));
-  });
-  $('a[data-toggle="tab"]').click(function(){
-    $('a[data-toggle="tab"]').removeClass('active');
-    $(this).addClass('active');
-    $(this).focus();
-
-  });
-
-  var activeTab = localStorage.getItem('activeTab');
-  if(activeTab){
-      $('#category a[href="' + activeTab + '"]').tab('show');
-      $('#category a[href="' + activeTab + '"]').addClass('active');
-  }
-
-
-
-  //jQuery time
-  var current_fs, next_fs, previous_fs, next_view; //fieldsets
-  var cur_step, next_step, prev_step;
-  var left, opacity, scale; //fieldset properties which we will animate
-  var animating; //flag to prevent quick multi-click glitches
-
-  $(".next").click(function(){
-  	if(animating) return false;
-  	animating = true;
-
-     current_fs = $(this).data('step');
-  	 next_fs = Math.floor(current_fs += 1);
-     prev_fs = Math.floor(current_fs -= 1);
-
-     cur_step = $("#step-"+current_fs);
-     next_step = $("#step-"+next_fs);
-    // current_fs = $(this).closest("fieldset");
-  	next_view = $(this).closest("fieldset").next();
-
-    if($("form").valid()){
-      //activate next step on progressbar using the index of next_fs
-    	$("#progressbar li").eq($("fieldset").index(next_view)).addClass("active");
-
-    	//show the next fieldset
-    	next_step.show();
-    	//hide the current fieldset with style
-    	cur_step.animate({opacity: 0}, {
-    		step: function(now, mx) {
-    			//as the opacity of current_fs reduces to 0 - stored in "now"
-    			//1. scale current_fs down to 80%
-    			scale = 1 - (1 - now) * 0.2;
-    			//2. bring next_fs from the right(50%)
-    			left = (now * 50)+"%";
-    			//3. increase opacity of next_fs to 1 as it moves in
-    			opacity = 1 - now;
-    			cur_step.css({
-            'transform': 'scale('+scale+')',
-            'position': 'absolute'
-          });
-    			next_step.css({'left': left, 'opacity': opacity});
-    		},
-    		duration: 800,
-    		complete: function(){
-    			cur_step.hide();
-    			animating = false;
-    		},
-    		//this comes from the custom easing plugin
-    		easing: 'easeInOutBack'
-    	});
-
-    }
-
-  });
-
-  $(".previous").click(function(){
-    if(animating) return false;
-  	animating = true;
-
-     current_fs = $(this).data('step');
-
-  	 next_fs = Math.floor(current_fs =+ 1);
-     prev_fs = Math.floor(current_fs -= 1);
-
-     cur_step = $("#step-"+current_fs);
-     next_step = $("#step-"+next_fs);
-    // current_fs = $(this).closest("fieldset");
-  	prev_view = $(this).closest("fieldset").prev();
-
-
-
-  	//activate next step on progressbar using the index of next_fs
-  	$("#progressbar li").eq($("fieldset").index(prev_view)).addClass("active");
-
-  	//show the next fieldset
-  	prev_step.show();
-  	//hide the current fieldset with style
-  	cur_step.animate({opacity: 0}, {
-  		step: function(now, mx) {
-  			//as the opacity of current_fs reduces to 0 - stored in "now"
-  			//1. scale current_fs down to 80%
-  			scale = 1 - (1 - now) * 0.2;
-  			//2. bring next_fs from the right(50%)
-  			left = (now * 50)+"%";
-  			//3. increase opacity of next_fs to 1 as it moves in
-  			opacity = 1 - now;
-  			cur_step.css({
-          'transform': 'scale('+scale+')',
-          'position': 'absolute'
-        });
-  			prev_step.css({'left': left, 'opacity': opacity});
-  		},
-  		duration: 800,
-  		complete: function(){
-  			cur_step.hide();
-  			animating = false;
-  		},
-  		//this comes from the custom easing plugin
-  		easing: 'easeInOutBack'
-  	});
-  });
-  $("form").validate({
-    rules: {
-
-    },
-    messages: {
-
-    },
-    submitHandler: function(form){
-      return false;
-    }
-  });
-
-  $(".submit").click(function(){
-  	return false;
-  });
-
-
-  var state_list = {"states": [
-  "Abia",
-  "Adamawa",
-  "Anambra",
-  "Akwa Ibom",
-  "Bauchi",
-  "Bayelsa",
-  "Benue",
-  "Borno",
-  "Cross River",
-  "Delta",
-  "Ebonyi",
-  "Enugu",
-  "Edo",
-  "Ekiti",
-  "FCT - Abuja",
-  "Gombe",
-  "Imo",
-  "Jigawa",
-  "Kaduna",
-  "Kano",
-  "Katsina",
-  "Kebbi",
-  "Kogi",
-  "Kwara",
-  "Lagos",
-  "Nasarawa",
-  "Niger",
-  "Ogun",
-  "Ondo",
-  "Osun",
-  "Oyo",
-  "Plateau",
-  "Rivers",
-  "Sokoto",
-  "Taraba",
-  "Yobe",
-  "Zamfara"
-]};
-for (var i = 0; i < state_list.states.length; i++) {
-  $("#state_of_origin").append($('<option></option>').attr('value', state_list.states[i]).text(state_list.states[i]));
-}
-  $("#state_of_origin").change(function(e){
-    var state_name = $(this).val();
-    $("#lga").empty().selectpicker('refresh');
-    $.getJSON("<?php echo base_url('assets/lga.json');?>", function(data){
-
-      for (var i = 0; i < data.length; i++) {
-        if(data[i].state.name === state_name){
-          //console.log(data[i].state);
-          lgas = data[i].state.locals
-          for (var i = 0; i < lgas.length; i++) {
-            $("#lga").append($('<option></option>').attr('value', lgas[i].name).text(lgas[i].name));
-          }
-
-        }
-      }
-
-      $("#lga").selectpicker('refresh');
-
-    });
-  });
-
-  $("#state_of_origin").trigger('change');
-
-
-});
+<script type="text/javascript" src="<?php echo base_url('assets/js/evaluation.js');?>">
 
 
 </script>
