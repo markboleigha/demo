@@ -1647,3 +1647,14 @@ font-family:"open_sansregular",Arial,sans-serif;
 input, select{
   border-radius: 0px !important;
 }
+
+.underline{
+  text-decoration: underline;
+}
+.form-group{
+  width: 100% !important;
+}
+
+.remove_field{
+  margin-top: 15px;
+}

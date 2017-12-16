@@ -53,7 +53,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
               </div>
                 <div class="row tab-content">
-                  <?php if(empty($particulars) || isset($_GET['edit'])) { ?>
+                  <?php
+                  if(empty($particulars) || $this->uri->segment(2) == 'edit') { ?>
                   <!--TAB 1-->
                   <div class="tab-pane fade in active" id="tab-1">
                     <div class="row">
@@ -62,7 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <!-- progressbar -->
                           <ul id="progressbar">
                             <li class="active">Personal & Family Details</li>
-                            <li>Appointments</li>
+                            <li>Appointment Profile</li>
                             <li>Courses Attended</li>
                             <li>Awards & Decorations</li>
                           </ul>
@@ -70,6 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                       </div>
                     </div>
+                    <?php echo $this->session->flashdata('get'); ?>
                     <div class="row col-lg-12">
                       <?php
                       $attributes = array('id'=> 'msform', 'role' => 'form');
@@ -127,7 +129,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                         <div class="form-group">
                           <div class="col-md-12">
-                            <h4>Next of Kin Details</h4>
+                            <h4 class="underline">Next of Kin Details</h4>
                           </div>
 
                           <div class="col-md-6">
@@ -165,7 +167,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <hr>
                         <div class="form-group">
                           <div class="col-md-12">
-                            <h4>Medical Information</h4>
+                            <h4 class="underline">Medical Information</h4>
                           </div>
                           <div class="col-md-6">
                             <label for ="medical_state">Medical State</label>
@@ -175,7 +177,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <div class="col-md-6">
                             <label for="last_medical">Last Medical Examination</label>
                             <input type="text" class="form-control datepicker" name="medical_date" id="medical_date">
-
                           </div>
                           <div class="clearfix"></div>
                         </div>
@@ -227,8 +228,77 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                       </fieldset>
 
-
                       <fieldset id="step-1">
+                        <section>
+                          <div class="form-group">
+                            <button class="but opc-1 addAppointment">Add More <i class="fa icon-plus"></i></button>
+                            <div class="clearfix"></div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="col-md-3">
+                              <label for="rank">Rank</label>
+      												<input type="text" placeholder="Rank" class="form-control" name="rank[]" id="rank">
+      											</div>
+      											<div class="col-md-3">
+                              <label for="appoinment">Appointment</label>
+      												<input type="text" placeholder="Appointment" class="form-control" name="appoinment[]" id="appoinment">
+      											</div>
+      											<div class="col-md-3">
+                              <label for="period">Period</label>
+      												<input type="text" class="form-control" name="period[]" id="period" placeholder="YYYY/MM - YYYY/MM">
+      											</div>
+                            <button class="but opc-3 remove_field">Remove</button>
+                            <div class="clearfix"></div>
+                          </div>
+
+                        </section>
+                        <div class="col-md-12">
+                          <button type="button" class="previous but opc-1" data-step="1"><i class="fa icon-left-circled"></i> Previous</button>
+                          <button type="button" class="next but opc-3 pull-right" data-step="1">Next <i class="fa icon-right-circled"></i></button>
+                        </div>
+                        <div class="clearfix"></div>
+                      </fieldset>
+
+                      <fieldset id="step-2">
+                        <section>
+                          <div class="form-group">
+                            <button class="but opc-1 addCourse">Add More <i class="fa icon-plus"></i></button>
+                            <div class="clearfix"></div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-md-3">
+                              <label for="course">Course Name</label>
+      												<input type="text" placeholder="Course" class="form-control" name="course[]" id="course">
+      											</div>
+      											<div class="col-md-3">
+                              <label for="institution">Institution</label>
+      												<input type="text" placeholder="Insitution" class="form-control" name="insitution[]" id="insitution">
+      											</div>
+      											<div class="col-md-2">
+                              <label for="grade">Grade</label>
+      												<input type="text" placeholder="Grade" class="form-control" name="grade[]" id="grade">
+      											</div>
+      											<div class="col-md-2">
+                              <label for="year">Year</label>
+      												<input type="text" placeholder="Year" class="form-control" name="year[]" id="year">
+      											</div>
+      											<button class="but opc-3 remove_field"></button>
+                            <div class="clearfix"></div>
+                          </div>
+    										</div>
+
+
+
+                        </section>
+                        <div class="col-md-12">
+                          <button type="button" class="previous but opc-1" data-step="2"><i class="fa icon-left-circled"></i> Previous</button>
+                          <button type="button" class="next but opc-3 pull-right" data-step="2">Next <i class="fa icon-right-circled"></i></button>
+                        </div>
+                        <div class="clearfix"></div>
+
+                      </fieldset>
+                      <fieldset id="step-3">
 
 
 
