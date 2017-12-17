@@ -138,12 +138,12 @@ $('.filter li a').on("click", function(e){
 
 
 
-	$('.search-form i').on("click", function(){
-		$(this).closest('.search-form').find('input[type="text"]').focus();
-		if($(this).closest('.search-form').find('input[type="text"]').val()){
-			$(this).closest('.search-form').find('input[type="submit"]').trigger('click');
-		}
-	});
+	// $('.search-form i').on("click", function(){
+	// 	$(this).closest('.search-form').find('input[type="text"]').focus();
+	// 	if($(this).closest('.search-form').find('input[type="text"]').val()){
+	// 		$(this).closest('.search-form').find('input[type="submit"]').trigger('click');
+	// 	}
+	// });
 
 //------------------------------------- End search input------------------------------------------------//
 

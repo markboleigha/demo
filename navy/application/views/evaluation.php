@@ -42,12 +42,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <ul id="category" class="filter nav nav-tabs">
                     <li><a href="#tab-1" data-toggle="tab" class="">officer particulars</a></li>
                     <li><a href="#tab-2" data-toggle="tab" class="">Evaluation Data</a></li>
-                    <li><a href="#tab-3" data-toggle="tab" class="">Other Data 1</a></li>
-                    <li><a href="#tab-4" data-toggle="tab" class="">Other Data 2</a></li>
+                    <!-- <li><a href="#tab-3" data-toggle="tab" class="">Other Data 1</a></li>
+                    <li><a href="#tab-4" data-toggle="tab" class="">Other Data 2</a></li> -->
                   </ul>
-
-
-
                 </div>
 
 
@@ -65,7 +62,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <li class="active">Personal & Family Details</li>
                             <li>Appointment Profile</li>
                             <li>Courses Attended</li>
-                            <li>Awards & Decorations</li>
                           </ul>
                           <!-- fieldsets -->
                         </div>
@@ -73,9 +69,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                     <?php echo $this->session->flashdata('get'); ?>
                     <div class="row col-lg-12">
+                      <div id="message"></div>
                       <?php
-                      $attributes = array('id'=> 'msform', 'role' => 'form');
-                      echo form_open('', $attributes); ?>
+                      $attributes = array('id' => 'msform', 'method' => 'post');
+                      echo form_open('evaluation', $attributes); ?>
 
                       <!-- fieldsets -->
                       <fieldset id="step-0">
@@ -120,6 +117,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <div class="col-md-6">
                             <label for="no_of_children">Number of Children</label>
                             <input type="text" class="form-control" name="no_of_children" id="no_of_children">
+
+                          </div>
+                          <div class="col-md-6">
+                            <label for="professional">Membership of Professional Bodies: (<small>separate with commas</small>)</label>
+                            <input type="text" class="form-control" name="professional_body" id="professional_body" placeholder="e.g: ICAN, NBA">
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-md-6">
+                            <label for="no_of_children">Knowledge of Foriegn Language</label>
+                            <input type="text" class="form-control" name="foreign_lang" id="foreign_lang" placeholder="e.g: French, Spanish">
+                          </div>
+                          <div class="col-md-6">
+                            <label for="awards">Awards</label>
+                            <input type="text" class="form-control" name="awards" id="awards" placeholder="e.g: CFR, OON">
 
                           </div>
                           <div class="clearfix"></div>
@@ -241,8 +254,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       												<input type="text" placeholder="Rank" class="form-control" name="rank[]" id="rank">
       											</div>
       											<div class="col-md-3">
-                              <label for="appoinment">Appointment</label>
-      												<input type="text" placeholder="Appointment" class="form-control" name="appoinment[]" id="appoinment">
+                              <label for="appointment">Appointment</label>
+      												<input type="text" placeholder="Appointment" class="form-control" name="appointment[]" id="appointment">
       											</div>
       											<div class="col-md-3">
                               <label for="period">Period</label>
@@ -283,39 +296,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               <label for="year">Year</label>
       												<input type="text" placeholder="Year" class="form-control" name="year[]" id="year">
       											</div>
-      											<button class="but opc-3 remove_field"></button>
+      											<button class="but opc-3 remove_field">Remove</button>
                             <div class="clearfix"></div>
                           </div>
-    										</div>
-
-
 
                         </section>
                         <div class="col-md-12">
+                          <div class="clearfix"></div>
                           <button type="button" class="previous but opc-1" data-step="2"><i class="fa icon-left-circled"></i> Previous</button>
-                          <button type="button" class="next but opc-3 pull-right" data-step="2">Next <i class="fa icon-right-circled"></i></button>
+                          <input id="submit" type="submit" class="but opc-3 pull-right" value="Submit">
                         </div>
                         <div class="clearfix"></div>
-
                       </fieldset>
-                      <fieldset id="step-3">
-
-
-
-
-                      </fieldset>
-
-
+                      <?php echo form_close();?>
                     </div>
 
-
-
-                    <!-- <div class="form-group">
-                      <label for="current_appointment">Current Appointment:</label>
-                      <div class="col-md-8">
-                        <input type="text" class="form-control" name="current_appointment" id="current_appointment">
-                      </div>
-                    </div> -->
 
                   </div>
                 <?php }else{ ?>
@@ -327,7 +322,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                   <!--TAB 2-->
                   <div class="tab-pane fade" id="tab-2">
-                      <h3><i class="fa hearseicon-"></i> Evaluation</h3>
+                      <h3>Evaluation</h3>
 
               <div class="row">
                 <div class="divider-m tCenter margTSSmall margBSmall clearfix">
@@ -362,7 +357,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 </div>
 =======
-                  </div>
+              </div>
 >>>>>>> cfa58e83e3f870868e0d2488f0f582f68b204999
 
                   <!--TAB 2-->

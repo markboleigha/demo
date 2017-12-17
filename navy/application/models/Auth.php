@@ -39,7 +39,7 @@ Class Auth extends CI_Model{
   * Login User
   */
   public function login($username, $password){
-    $query = $this->db->query("SELECT id,service_no,password FROM users WHERE service_no = '$username'");
+    $query = $this->db->query("SELECT user_id,service_no,password FROM users WHERE service_no = '$username'");
     if($query->num_rows() < 1){
       $this->error = 'Invalid Login Details';
       return false;
@@ -49,7 +49,7 @@ Class Auth extends CI_Model{
       if($check_password == TRUE){
 
         $data = array(
-          'loggedInUser' => $result->id,
+          'loggedInUser' => $result->user_id,
         );
         $this->session->set_userdata($data);
         return true;

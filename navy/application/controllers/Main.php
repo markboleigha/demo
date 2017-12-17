@@ -122,7 +122,7 @@ class Main extends CI_Controller{
         $post = $this->security->xss_clean($_POST);
         $this->user_model->insert_particulars($post, $this->user);
         $this->user_model->insert_appointments($post, $this->user);
-        $this->user_model->insert_awards($post, $this->user);
+        $this->user_model->insert_courses($post, $this->user);
 
         //$this->session->set_flashdata('')
       }
@@ -132,7 +132,7 @@ class Main extends CI_Controller{
         'user' => $this->user_model->user_details($this->user),
         'particulars' => $this->user_model->particulars($this->user)
       );
-  
+
       $this->load->view('template', $data);
 
     }else{
