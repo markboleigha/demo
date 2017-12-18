@@ -40,6 +40,7 @@ class Main extends CI_Controller{
       }
     }
     $data = array(
+      'interface' => 'main',
       'title' => 'Secure Login',
       'page' => 'login'
     );
@@ -53,12 +54,14 @@ class Main extends CI_Controller{
   public function success(){
     if($this->session->flashdata('msg')){
       $data = array(
+        'interface' => 'main',
         'title' => 'Success',
         'page' => 'success'
       );
 
     }else{
       $data = array(
+        'interface' => 'main',
         'title' => 'Not Found',
         'page' => 'invalid'
       );
@@ -106,6 +109,7 @@ class Main extends CI_Controller{
     }
 
     $data = array(
+      'interface' => 'main',
       'title' => 'Registration',
       'page' => 'register'
     );
@@ -118,15 +122,9 @@ class Main extends CI_Controller{
   */
   public function evaluation(){
     if($this->auth->is_logged_in($this->user)){
-      if($_POST && !empty($_POST)){
-        $post = $this->security->xss_clean($_POST);
-        $this->user_model->insert_particulars($post, $this->user);
-        $this->user_model->insert_appointments($post, $this->user);
-        $this->user_model->insert_courses($post, $this->user);
 
-        //$this->session->set_flashdata('')
-      }
       $data = array(
+        'interface' => 'main',
         'title' => 'Personnel Evaluation',
         'page' => 'evaluation',
         'user' => $this->user_model->user_details($this->user),
@@ -155,6 +153,7 @@ class Main extends CI_Controller{
   public function dashboard(){
     if($this->auth->is_logged_in($this->user)){
       $data = array(
+        'interface' => 'main',
         'title' => 'User Dashboard',
         'page' => 'dashboard',
         'user' => $this->user_model->user_details($this->user)
@@ -174,7 +173,8 @@ class Main extends CI_Controller{
 
   public function logout(){
     $this->session->sess_destroy();
-    $this->index();
+    $this->interface = 'main';
+    //$this->index();
   }
 
 

@@ -18,6 +18,15 @@ Class Auth extends CI_Model{
 
   }
 
+  public function is_admin($user){
+    $check = $this->db->query("SELECT `id` FROM `admin` WHERE `user_id` = '$user' AND `status` = 1 LIMIT 1");
+    if($check->num_rows() < 1){
+      return false;
+    }else{
+      return true;
+    }
+  }
+
   public function register_user($form_data = array()){
     $data = array();
     foreach ($form_data as $key => $value) {

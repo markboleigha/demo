@@ -222,7 +222,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: #cd5353;
+  background: #001731;
   -webkit-transform: scaleX(0);
   -ms-transform: scaleX(0);
   transform: scaleX(0);
@@ -267,7 +267,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: #cd5353;
+  background: #001731;
   -webkit-transform: scaleX(1);
   -ms-transform: scaleX(1);
   transform: scaleX(1);
@@ -288,7 +288,7 @@
 
 .main-nav li a.active{
 	color:#ffffff;
-	background: #cd5353;
+	background: #001731;
 }
 
 
@@ -324,8 +324,8 @@
 
 
 .social a:hover {
-    border: 2px solid #cd5353;
-    color: #cd5353;
+    border: 2px solid #001731;
+    color: #001731;
 }
 
 
@@ -376,7 +376,7 @@
 
 .info ul.info-list {
 	border:1px solid #efefef;
-	text-align:center;
+  text-align: left;
 }
 
 
@@ -455,7 +455,7 @@
 
 
 .skill.dev .progress {
-	border:1px solid #cd5353;
+	border:1px solid #001731;
 }
 
 .skill.prs .progress {
@@ -481,7 +481,7 @@
 
 
 .skill.dev .progress .percentage {
-	background-color: #cd5353;
+	background-color: #001731;
 }
 
 
@@ -528,7 +528,7 @@
 }
 
 .skill .title.dev{
-	border: 1px dashed #cd5353;
+	border: 1px dashed #001731;
 }
 
 .skill .title.prs{
@@ -598,7 +598,7 @@
 
 
 .exp:after{
- 	background: #cd5353;
+ 	background: #001731;
     border: 3px solid #ffffff;
     content: "";
     height: 15px;
@@ -641,7 +641,7 @@
 
 .exp .hgroup h6 span.current{
 	color:#ffffff;
-	background: #cd5353;
+	background: #001731;
 	border-radius:6px;
 	-moz-border-radius:6px
 	-webkit-border-radius :6px;
@@ -660,7 +660,7 @@
 .block.service .ico{
 	font-size:30px;
 	margin-bottom:10px;
-	color: #cd5353;
+	color: #001731;
 }
 
 
@@ -762,7 +762,7 @@
 
 
 .filter li a:hover {
-    color: #cd5353;
+    color: #001731;
 }
 
 
@@ -770,7 +770,7 @@
 
 
 .filter li a.active {
-    color: #cd5353;
+    color: #001731;
 }
 
 
@@ -874,7 +874,7 @@
 
 
 .block-nav-work li a:hover{
-	color:#cd5353;
+	color:#001731;
 }
 
 
@@ -911,7 +911,7 @@
 }
 
 span.meta-date{
- 	background: #cd5353;
+ 	background: #001731;
     border-radius: 6px;
 	-moz-border-radius:6px;
 	-webkit-border-radius :6px;
@@ -941,7 +941,7 @@ span.meta-date{
 }
 
 .post-meta  li a{
-    color:#cd5353;
+    color:#001731;
 }
 
 .post-meta i {
@@ -995,7 +995,7 @@ span.meta-date{
 }
 
 .search-form input[type="text"] {
-    background: #cd5353;
+    background: #001731;
 	color: #ffffff;
     font-size: 12px;
     border: none;
@@ -1123,7 +1123,7 @@ span.meta-date{
   color: #ffffff;
   font-size: 12px;
   text-transform: uppercase;
-  background: #cd5353;
+  background: #001731;
   border-radius: 6px;
  -moz-border-radius:6px;
  -webkit-border-radius :6px;
@@ -1142,7 +1142,7 @@ span.meta-date{
 .comment-content .date a {
     display: inline-block;
     font-size: 11px;
-	color: #cd5353;
+	color: #001731;
 	position: relative;
     top: -5px;
 }
@@ -1198,7 +1198,7 @@ span.meta-date{
 
 
 .pagination ul li a.selected {
-    color: #cd5353;
+    color: #001731;
 }
 
 
@@ -1327,7 +1327,7 @@ font-family:"open_sansregular",Arial,sans-serif;
 
 
 .errorForm {
-    border: 1px solid #cd5353 !important;
+    border: 1px solid #001731 !important;
 }
 
 
@@ -1354,7 +1354,7 @@ font-family:"open_sansregular",Arial,sans-serif;
 
 
 .address-info i {
-    background:#cd5353;
+    background:#001731;
     color: #ffffff;
     display: inline-block;
     font-size: 28px;
