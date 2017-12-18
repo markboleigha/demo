@@ -60,7 +60,11 @@ Class User_model extends CI_Model {
   public function insert_courses($data = array(), $user){
     $this->db->query("DELETE FROM courses_attended WHERE user_id = '$user'");
     for($i = 0; $i < count($data['course']); $i++){
-      $courses = array('user_id' => $user, 'course' => $data['course'][$i], 'insitution' => $data['insitution'][$i], 'grade' => $data['grade'][$i], 'year' => $data['year'][$i]);
+      $courses = array('user_id' => $user,
+      'course' => $data['course'][$i],
+      'insitution' => $data['insitution'][$i],
+      'grade' => $data['grade'][$i],
+      'year' => $data['year'][$i]);
       $this->db->insert('courses_attended', $courses);
       $courses= array();
     }
