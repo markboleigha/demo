@@ -85,7 +85,7 @@ iframe{width:100%;frameborder:0;display:inline-block;}
 ================================================== */
 	body {
 		background: #efefef;
-		font: 14px/22px "open_sans",Arial,sans-serif;
+		font: 14px/22px "tahoma",Arial,sans-serif;
 		color: #999999;
 		-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
 		-webkit-text-size-adjust: 100%;

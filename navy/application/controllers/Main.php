@@ -128,6 +128,8 @@ class Main extends CI_Controller{
         'title' => 'Personnel Evaluation',
         'page' => 'evaluation',
         'user' => $this->user_model->user_details($this->user),
+        'assessments' => $this->user_model->all_assessments($this->user),
+        'pending_assessment' => $this->user_model->pending_assessment($this->user),
         'particulars' => $this->user_model->particulars($this->user)
       );
 
@@ -137,6 +139,26 @@ class Main extends CI_Controller{
       redirect('login', 'refresh');
     }
   }
+
+  public function view_assessment(){
+    if($this->auth->is_logged_in($this->user)){
+      $assessment_id = $this->uri->segment(2);
+
+      $data = array(
+        'interface' => 'main',
+        'title' => 'Personnel Evaluation',
+        'page' => 'view_evaluation',
+        'user' => $this->user_model->user_details($this->user),
+        'assessment' => $assessment_id,
+        'particulars' => $this->user_model->particulars($this->user)
+      );
+      $this->load->view('template', $data);
+    }else{
+      redirect('login', 'refresh');
+    }
+  }
+
+
   /*
   * Check if email is valid
   */
@@ -174,7 +196,12 @@ class Main extends CI_Controller{
   public function logout(){
     $this->session->sess_destroy();
     $this->interface = 'main';
-    //$this->index();
+    $this->index();
+  }
+
+
+  public function administration(){
+    redirect('administration/index');
   }
 
 

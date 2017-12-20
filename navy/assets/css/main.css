@@ -1747,3 +1747,25 @@ input, select{
 	display: inline-block;
 	margin: 100px auto;
 }
+
+
+*[data-background="navy-blue"] {
+    background-color: #001731;
+    color: #FFFFFF !important;
+    border: none;
+    border-radius: 0px !important;
+}
+.alert{
+  border-radius: 0px;
+}
+h1, h2, h3, h4{
+  color: inherit;
+}
+
+.modal-content{
+  border-radius: 0px;
+}
+.modal-dialog{
+  width: 70%;
+  margin: 27px auto;
+}

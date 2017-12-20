@@ -48,7 +48,7 @@ Class Auth extends CI_Model{
   * Login User
   */
   public function login($username, $password){
-    $query = $this->db->query("SELECT user_id,service_no,password FROM users WHERE service_no = '$username'");
+    $query = $this->db->query("SELECT user_id, service_no, password FROM users WHERE service_no = '$username'");
     if($query->num_rows() < 1){
       $this->error = 'Invalid Login Details';
       return false;
@@ -64,6 +64,25 @@ Class Auth extends CI_Model{
         return true;
       }else{
         $this->error = 'Invalid Login Details';
+        return false;
+      }
+    }
+  }
+
+  public function login_admin($username, $password){
+    $query = $this->db->query("SELECT * FROM admin WHERE service_no = '$username' AND status = 1");
+    if($query->num_rows() < 1){
+      $this->error = 'Invalid Credentials';
+      return false;
+    }else{
+      $result = $query->row();
+      $check_password = password_verify($password, $result->password);
+      if($check_password == TRUE){
+        $session = array('loggedInUser' => $result->id);
+        $this->session->set_userdata($session);
+        return true;
+      }else{
+        $this->error = 'Invalid Credentials';
         return false;
       }
     }
